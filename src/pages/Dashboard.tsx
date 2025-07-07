@@ -1,22 +1,30 @@
 // src/pages/Dashboard.tsx
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../redux/store';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../redux/store";
 import {
   fetchNotesAsync,
   createNoteAsync,
   updateNoteAsync,
   deleteNoteAsync,
-} from '../redux/notesSlice';
-import { Note } from '../types/Notes';
-import NoteCard from '../components/NoteCard';
+} from "../redux/notesSlice";
+import { Note } from "../types/Notes";
+import NoteCard from "../components/NoteCard";
 
 const Dashboard: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { notes, loading, error } = useSelector((state: RootState) => state.notes);
+  const { notes, loading, error } = useSelector(
+    (state: RootState) => state.notes
+  );
 
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const sortedNotes = useMemo(() => {
+    return [...notes].sort(
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }, [notes]);
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState<number | null>(null);
 
@@ -33,22 +41,25 @@ const Dashboard: React.FC = () => {
       dispatch(createNoteAsync({ title, content }));
     }
 
-    setTitle('');
-    setContent('');
+    setTitle("");
+    setContent("");
     setEditMode(false);
     setEditId(null);
   };
 
-  const handleDelete = (id: number) => {
-    dispatch(deleteNoteAsync(id));
-  };
+  const handleDelete = useCallback(
+    (id: number) => {
+      dispatch(deleteNoteAsync(id));
+    },
+    [dispatch]
+  );
 
-  const handleEdit = (note: Note) => {
+  const handleEdit = useCallback((note: Note) => {
     setTitle(note.title);
     setContent(note.content);
     setEditMode(true);
     setEditId(note.id);
-  };
+  }, []);
 
   return (
     <div className="dashboard">
@@ -68,15 +79,15 @@ const Dashboard: React.FC = () => {
           onChange={ (e) => setContent(e.target.value) }
         />
         <button onClick={ handleAddOrUpdate }>
-          { editMode ? '✅ Update Note' : '➕ Add Note' }
+          { editMode ? "✅ Update Note" : "➕ Add Note" }
         </button>
       </div>
 
       { loading && <p>⏳ Loading notes...</p> }
-      { error && <p style={ { color: 'red' } }>❌ { error }</p> }
+      { error && <p style={ { color: "red" } }>❌ { error }</p> }
 
       <div className="note-list">
-        { notes.map((note: Note) => (
+        { sortedNotes.map((note) => (
           <NoteCard
             key={ note.id }
             note={ note }
@@ -84,6 +95,7 @@ const Dashboard: React.FC = () => {
             onEdit={ () => handleEdit(note) }
           />
         )) }
+
       </div>
     </div>
   );

@@ -3,11 +3,12 @@ import { Note } from '../types/Notes';
 
 interface NoteCardProps {
   note: Note;
-  onEdit: (id: number) => void;
-  onDelete: (id: number) => void;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
 const NoteCard: React.FC<NoteCardProps> = ({ note, onEdit, onDelete }) => {
+  console.log(`📦Rendering NoteCard: ID : ${note.id}`)
   return (
     <div className="note-card">
       <h3>{ note.title }</h3>
@@ -15,12 +16,12 @@ const NoteCard: React.FC<NoteCardProps> = ({ note, onEdit, onDelete }) => {
       <div className="note-footer">
         <small>{ new Date(note.createdAt).toLocaleString() }</small>
         <div>
-          <button onClick={ () => onEdit(note.id) }>✏️</button>
-          <button onClick={ () => onDelete(note.id) }>🗑️</button>
+          <button onClick={ onEdit }>✏️</button>
+          <button onClick={ onDelete }>🗑️</button>
         </div>
       </div>
     </div>
   );
 };
 
-export default NoteCard;
+export default React.memo(NoteCard);
