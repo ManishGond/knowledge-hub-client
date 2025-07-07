@@ -1,8 +1,7 @@
-import Dashboard from "./pages/Dashboard";
-import React from "react";
+import AppRoutes from "./router/AppRoutes";
 
 function App() {
-  return <Dashboard />
+  return <AppRoutes />
 }
 
 export default App;
