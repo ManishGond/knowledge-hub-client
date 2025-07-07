@@ -1,46 +1,132 @@
-# Getting Started with Create React App
+<h1 align="center">🧠 Knowledge Hub</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+  A full-stack note-taking & knowledge management app built with React + TypeScript + Redux Toolkit on the frontend, and Express + MySQL + Prisma on the backend.
+</p>
 
-## Available Scripts
+<p align="center"> 
+  <img src="https://github.com/user-attachments/assets/f20f176c-fe03-4b21-90e7-7bb2b3c992c1" width="600" alt="Screenshot 1" /> 
+  <br/><br/> 
+  <img src="https://github.com/user-attachments/assets/5dab4c83-6a17-4ac8-bf2a-c75456b96e04" width="600" alt="Screenshot 3" /> 
+</p>
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* ✅ Add / Edit / Delete Notes
+* 💾 Persistent storage with MySQL + Prisma
+* 🔁 Global state with Redux Toolkit
+* ⚛️ Functional components with React Hooks
+* 🧪 Unit tested with Jest + React Testing Library
+* ⚙️ Optimized with `useMemo`, `React.memo`, `useCallback`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## ⚙️ Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Frontend              | Backend            | Dev Tools / Testing      |
+| --------------------- | ------------------ | ------------------------ |
+| React 19 + TypeScript | Node.js + Express  | Jest + React Testing Lib |
+| Redux Toolkit         | MySQL + Prisma ORM | ESLint + Prettier        |
+| React Router DOM v6   | RESTful API (CRUD) | Dotenv + Nodemon         |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📁 Folder Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+knowledge-hub/
+├── client/                   # React frontend
+│   ├── public/               # Static assets (favicon, index.html, images)
+│   └── src/                  # Source code
+│       ├── api/              # API service layer (Axios/fetch)
+│       ├── components/       # Reusable UI components
+│       ├── hooks/            # Custom React hooks
+│       ├── pages/            # Page-level components (e.g. Dashboard, Home)
+│       ├── redux/            # Redux slices and store config
+│       ├── types/            # Global TypeScript types/interfaces
+│       ├── App.tsx           # Root component
+│       └── main.tsx          # App entry point
+│
+├── server/                   # Node.js backend
+│   └── src/
+│       ├── controllers/      # Business logic for routes
+│       ├── prisma/           # Prisma schema & client
+│       ├── routes/           # Route definitions
+│       └── index.ts          # Server entry point
+│   ├── .env                  # Environment variables
+│   └── package.json          # Backend dependencies & scripts
+│
+├── README.md                 # Project overview
+└── .gitignore                # Ignored files in git
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🧪 Running the App
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1️⃣ Clone the Repository
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+git clone https://github.com/your-username/knowledge-hub.git
+cd knowledge-hub
+cd server
+npm install
+npx prisma generate
+npx prisma migrate dev
+npm run dev
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+cd client
+npm install
+npm start
+```
 
-## Learn More
+### 🖼️ Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🧠 Dashboard View
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="https://github.com/user-attachments/assets/667d4810-9399-44ed-871f-ea582cc639ae" width="600" alt="Screenshot 2" /> 
+
+### ➕ Add/Edit Note
+
+
+<img src="https://github.com/user-attachments/assets/7bc116ce-665e-4054-8a4e-bc3c3ba61f0f" width="600" alt="Screenshot 4" /> 
+
+### 🧪 Testing
+
+```bash
+# From /client
+npm test
+```
+
+### ✅ Test Coverage Includes:
+
+* Reducer logic tests
+* Component rendering tests (NoteCard)
+* Event testing (onEdit, onDelete)
+* Async thunk testing (optional)
+
+---
+
+## 📺 Roadmap
+
+* 🔐 JWT Authentication
+* 📝 Markdown Rich Text Editor
+* 👥 Multi-user support
+* 🌗 Dark Mode Toggle
+* 🖼️ File Upload (Images/PDFs)
+
+---
+
+## 🙌 Author
+
+**Made with 💻 by Manish Gond**
+Full-stack dev in the making — mastering system design, frontend performance, and API architectures 🔥
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
