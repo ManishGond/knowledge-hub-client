@@ -89,11 +89,6 @@ npm start
 
 <img src="https://github.com/user-attachments/assets/667d4810-9399-44ed-871f-ea582cc639ae" width="600" alt="Screenshot 2" /> 
 
-### ➕ Add/Edit Note
-
-
-<img src="https://github.com/user-attachments/assets/7bc116ce-665e-4054-8a4e-bc3c3ba61f0f" width="600" alt="Screenshot 4" /> 
-
 ### 🧪 Testing
 
 ```bash
