@@ -102,17 +102,6 @@ npm test
 * Component rendering tests (NoteCard)
 * Event testing (onEdit, onDelete)
 * Async thunk testing (optional)
-
----
-
-## 📺 Roadmap
-
-* 🔐 JWT Authentication
-* 📝 Markdown Rich Text Editor
-* 👥 Multi-user support
-* 🌗 Dark Mode Toggle
-* 🖼️ File Upload (Images/PDFs)
-
 ---
 
 ## 🙌 Author
