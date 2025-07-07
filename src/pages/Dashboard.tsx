@@ -1,65 +1,27 @@
-// src/pages/Dashboard.tsx
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../redux/store";
-import {
-  fetchNotesAsync,
-  createNoteAsync,
-  updateNoteAsync,
-  deleteNoteAsync,
-} from "../redux/notesSlice";
-import { Note } from "../types/Notes";
+import { useMemo } from "react";
+import { useNotes } from "../hooks/useNotes"
 import NoteCard from "../components/NoteCard";
 
-const Dashboard: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { notes, loading, error } = useSelector(
-    (state: RootState) => state.notes
-  );
+const Dashboard = () => {
+  const {
+    notes,
+    loading,
+    error,
+    title,
+    content,
+    setTitle,
+    setContent,
+    editMode,
+    handleAddOrUpdate,
+    handleDelete,
+    handleEdit,
+  } = useNotes()
 
   const sortedNotes = useMemo(() => {
     return [...notes].sort(
       (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }, [notes]);
-
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [editMode, setEditMode] = useState(false);
-  const [editId, setEditId] = useState<number | null>(null);
-
-  useEffect(() => {
-    dispatch(fetchNotesAsync());
-  }, [dispatch]);
-
-  const handleAddOrUpdate = () => {
-    if (!title.trim() || !content.trim()) return;
-
-    if (editMode && editId !== null) {
-      dispatch(updateNoteAsync(editId, { title, content }));
-    } else {
-      dispatch(createNoteAsync({ title, content }));
-    }
-
-    setTitle("");
-    setContent("");
-    setEditMode(false);
-    setEditId(null);
-  };
-
-  const handleDelete = useCallback(
-    (id: number) => {
-      dispatch(deleteNoteAsync(id));
-    },
-    [dispatch]
-  );
-
-  const handleEdit = useCallback((note: Note) => {
-    setTitle(note.title);
-    setContent(note.content);
-    setEditMode(true);
-    setEditId(note.id);
-  }, []);
 
   return (
     <div className="dashboard">
@@ -95,10 +57,9 @@ const Dashboard: React.FC = () => {
             onEdit={ () => handleEdit(note) }
           />
         )) }
-
       </div>
     </div>
   );
-};
+}
 
 export default Dashboard;
