@@ -1,4 +1,4 @@
-<h1 align="center">🧠 Knowledge Hub</h1>
+<h1 align="center">🧠 NoteTaking</h1>
 
 <p align="center">
   A full-stack note-taking & knowledge management app built with React + TypeScript + Redux Toolkit on the frontend, and Express + MySQL + Prisma on the backend.
